@@ -37,7 +37,7 @@ const guardarLocalStorage = () => {
 
 const agregarCarrito = (guitarra) => {
   const existeCarrito = carrito.value.findIndex(producto => producto.id === guitarra.id);
-  if(existeCarrito >= 0) {
+  if (existeCarrito >= 0) {
     carrito.value[existeCarrito].cantidad++;
   } else {
     guitarra.cantidad = 1;
@@ -70,29 +70,21 @@ const vaciarCarrito = () => {
 </script>
 
 <template>
-
-  <Header 
-    :carrito="carrito"
-    :guitarra="guitarra"
-    @decrementar-cantidad="decrementarCantidad"
-    @incrementar-cantidad="incrementarCantidad"
-    @agregar-carrito="agregarCarrito"
-    @eliminar-producto="eliminarProducto"
-    @vaciar-carrito="vaciarCarrito"
-  />
+  <Header :carrito="carrito" :guitarra="guitarra" @decrementar-cantidad="decrementarCantidad"
+    @incrementar-cantidad="incrementarCantidad" @agregar-carrito="agregarCarrito" @eliminar-producto="eliminarProducto"
+    @vaciar-carrito="vaciarCarrito" />
 
   <main class="container-xl mt-5">
     <h2 class="text-center">Nuestra Colección</h2>
 
     <div class="row mt-5">
 
-      <Guitarra v-for="guitarra in guitarras" :guitarra="guitarra" @agregar-carrito="agregarCarrito" />
+      <Guitarra v-for="guitarra in guitarras" :key="guitarra.id" :guitarra="guitarra" @agregar-carrito="agregarCarrito" />
 
     </div>
   </main>
 
   <Footer />
-
 </template>
 
 <style scoped></style>
